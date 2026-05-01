@@ -1,0 +1,14 @@
+{
+  "name": "Remix: Smart Multi-Modal Education Tutor",
+  "description": "A production-ready Multi-Modal RAG system with Knowledge Graph (Neo4j) and Vector DB (Weaviate) integration for advanced educational tutoring.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "Multi-Modal RAG",
+    "Knowledge Graph Integration",
+    "Hybrid Retrieval",
+    "Graph Visualization"
+  ]
+}

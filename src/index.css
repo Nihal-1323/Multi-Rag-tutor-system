@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-dash-bg: #0F1115;
+  --color-dash-panel: #16191F;
+  --color-dash-surface: #1C1F26;
+  --color-dash-line: #2A2D35;
+  --color-dash-accent: #6366F1;
+  --color-dash-text: #E0E2E6;
+  --color-dash-muted: #9CA3AF;
+}
+
+@layer base {
+  html, body, #root {
+    @apply h-full w-full overflow-hidden;
+  }
+  
+  body {
+    @apply bg-dash-bg text-dash-text font-sans antialiased text-[13px];
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-dash-panel border border-dash-line rounded-lg;
+  }
+  
+  .mono-label {
+    @apply font-mono text-[10px] uppercase tracking-widest text-dash-muted font-bold;
+  }
+  
+  .dot-grid {
+    background-image: radial-gradient(var(--color-dash-line) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-dash-bg;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-dash-line rounded-full hover:bg-dash-muted/40;
+  }
+  
+  /* Always show scrollbar for chat */
+  .scrollbar-visible::-webkit-scrollbar {
+    width: 10px;
+  }
+  .scrollbar-visible::-webkit-scrollbar-thumb {
+    @apply bg-dash-muted/60 rounded;
+  }
+  .scrollbar-visible::-webkit-scrollbar-thumb:hover {
+    @apply bg-dash-muted;
+  }
+
+  /* Markdown content styling */
+  .prose {
+    @apply text-dash-text;
+  }
+  .prose p {
+    @apply mb-3 leading-relaxed;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  .prose strong {
+    @apply text-dash-accent font-semibold;
+  }
+  .prose em {
+    @apply text-dash-muted italic;
+  }
+  .prose code {
+    @apply bg-dash-surface px-1 py-0.5 rounded text-[11px] font-mono;
+  }
+  .prose ul, .prose ol {
+    @apply ml-4 mb-3 space-y-1;
+  }
+  .prose li {
+    @apply leading-relaxed;
+  }
+  .prose hr {
+    @apply border-dash-line my-3;
+  }
+  .prose h1, .prose h2, .prose h3 {
+    @apply text-dash-accent font-bold mb-2 mt-4;
+  }
+  .prose h1 {
+    @apply text-base;
+  }
+  .prose h2 {
+    @apply text-sm;
+  }
+  .prose h3 {
+    @apply text-xs;
+  }
+}

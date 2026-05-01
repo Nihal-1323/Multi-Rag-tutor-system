@@ -1,0 +1,30 @@
+fastapi
+uvicorn
+python-multipart
+pydantic
+weaviate-client
+neo4j
+sentence-transformers
+torch
+transformers
+numpy
+pandas
+PyMuPDF
+librosa
+openai-whisper
+google-generativeai
+python-dotenv
+python-magic
+pytest
+pytest-asyncio
+httpx
+Pillow
+# Embedding models
+clip-by-openai
+imagebind
+# Audio processing
+soundfile
+audioread
+# Additional utilities
+scikit-learn
+faiss-cpu
