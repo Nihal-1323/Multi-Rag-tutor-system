@@ -45,17 +45,17 @@ export default function UploadManager() {
   };
 
   return (
-    <div className="flex flex-col h-full bg-dash-bg overflow-auto">
-      <div className="p-3 border-b border-dash-line bg-dash-panel flex items-center justify-between shrink-0">
-        <h2 className="mono-label">Multi-Modal Ingestion</h2>
-        <span className="text-[9px] text-dash-muted font-mono">PIPELINE: BUSY</span>
+    <div className="flex flex-col h-full overflow-auto">
+      <div className="p-4 border-b border-dash-line flex items-center justify-between shrink-0">
+        <h2 className="text-sm font-semibold text-dash-text">Upload Documents</h2>
+        <span className="text-xs text-dash-muted">Drag & drop or click to upload</span>
       </div>
       
       <div className="flex flex-col md:flex-row flex-1 overflow-hidden" style={{ minHeight: 0 }}>
         <div 
           className={cn(
-            "w-full md:w-64 m-4 border border-dashed rounded-lg flex flex-col items-center justify-center transition-all px-4 text-center cursor-pointer",
-            isDragging ? "border-dash-accent bg-dash-accent/10" : "border-dash-line bg-dash-panel hover:bg-dash-surface"
+            "w-full md:w-72 m-4 border-2 border-dashed rounded-2xl flex flex-col items-center justify-center transition-all px-4 text-center cursor-pointer",
+            isDragging ? "border-purple-500 bg-purple-50" : "border-dash-line bg-dash-surface hover:bg-white hover:border-purple-300"
           )}
           onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
           onDragLeave={() => setIsDragging(false)}
@@ -68,45 +68,45 @@ export default function UploadManager() {
             input.click();
           }}
         >
-          <Upload className={cn("w-6 h-6 mb-2 transition-colors", isDragging ? "text-dash-accent" : "text-dash-muted")} />
-          <p className="text-[11px] text-dash-text font-bold">DROP MEDIA</p>
-          <p className="text-[9px] text-dash-muted mt-1 uppercase tracking-tight">PDF • Image • Audio</p>
+          <Upload className={cn("w-8 h-8 mb-3 transition-colors", isDragging ? "text-purple-500" : "text-dash-muted")} />
+          <p className="text-sm text-dash-text font-semibold">Drop files here</p>
+          <p className="text-xs text-dash-muted mt-2">PDF • Images • Audio</p>
         </div>
 
         <div className="flex-1 overflow-y-auto p-4 space-y-2">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {uploads.map((upload, i) => (
-              <div key={i} className="bg-dash-panel border border-dash-line p-2 rounded flex items-center gap-3 animate-in fade-in zoom-in-95 duration-300">
-                <div className="p-1.5 bg-dash-surface rounded">
-                  {upload.type.includes('pdf') ? <FileText className="w-3.5 h-3.5 text-blue-400" /> :
-                   upload.type.includes('image') ? <ImageIcon className="w-3.5 h-3.5 text-orange-400" /> :
-                   <Music className="w-3.5 h-3.5 text-purple-400" />}
+              <div key={i} className="bg-white border border-dash-line p-3 rounded-xl flex items-center gap-3 hover:shadow-md transition-shadow">
+                <div className="p-2 bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg">
+                  {upload.type.includes('pdf') ? <FileText className="w-5 h-5 text-blue-500" /> :
+                   upload.type.includes('image') ? <ImageIcon className="w-5 h-5 text-orange-500" /> :
+                   <Music className="w-5 h-5 text-purple-500" />}
                 </div>
                 
                 <div className="flex-1 min-w-0">
-                  <div className="flex justify-between items-end mb-1">
-                    <p className="text-[10px] font-medium truncate text-dash-text pr-2">{upload.name}</p>
-                    <span className="text-[8px] font-mono text-dash-muted uppercase">{upload.status}</span>
+                  <div className="flex justify-between items-end mb-1.5">
+                    <p className="text-xs font-medium truncate text-dash-text pr-2">{upload.name}</p>
+                    <span className="text-xs text-dash-muted capitalize">{upload.status}</span>
                   </div>
-                  <div className="h-0.5 w-full bg-dash-surface rounded-full overflow-hidden">
+                  <div className="h-1 w-full bg-dash-surface rounded-full overflow-hidden">
                     <div className={cn(
-                      "h-full bg-dash-accent transition-all duration-700",
+                      "h-full bg-gradient-to-r from-purple-500 to-indigo-600 transition-all duration-700",
                       upload.status === 'complete' ? "w-full" : "w-1/3 animate-pulse"
                     )} />
                   </div>
                 </div>
 
                 <div className="shrink-0 ml-1">
-                  {upload.status === 'uploading' && <Loader2 className="w-3 h-3 text-dash-muted animate-spin" />}
-                  {upload.status === 'complete' && <CheckCircle className="w-3 h-3 text-emerald-500" />}
-                  {upload.status === 'error' && <AlertCircle className="w-3 h-3 text-red-500" />}
+                  {upload.status === 'uploading' && <Loader2 className="w-4 h-4 text-dash-muted animate-spin" />}
+                  {upload.status === 'complete' && <CheckCircle className="w-4 h-4 text-emerald-500" />}
+                  {upload.status === 'error' && <AlertCircle className="w-4 h-4 text-red-500" />}
                 </div>
               </div>
             ))}
           </div>
           {uploads.length === 0 && (
-             <div className="h-32 flex flex-col items-center justify-center border border-dash-line rounded-lg border-dashed opacity-30">
-               <div className="text-[10px] mono-label">Ingest Queue Empty</div>
+             <div className="h-32 flex flex-col items-center justify-center border-2 border-dashed border-dash-line rounded-xl">
+               <div className="text-sm text-dash-muted">No uploads yet</div>
              </div>
           )}
         </div>

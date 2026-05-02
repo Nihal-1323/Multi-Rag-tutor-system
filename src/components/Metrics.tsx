@@ -48,53 +48,53 @@ export default function Metrics() {
   ];
 
   return (
-    <div className="flex flex-col h-full bg-dash-bg overflow-auto">
-      <div className="p-3 border-b border-dash-line bg-dash-panel flex items-center justify-between shrink-0">
-        <h2 className="mono-label">System Performance</h2>
+    <div className="flex flex-col h-full overflow-auto">
+      <div className="p-4 border-b border-dash-line flex items-center justify-between shrink-0">
+        <h2 className="text-sm font-semibold text-dash-text">Performance</h2>
         <div className="flex gap-2 items-center">
-           <span className="text-[9px] text-dash-muted font-mono">{metrics.documents} docs • {metrics.queries} queries</span>
-           <div className={`w-1.5 h-1.5 rounded-full ${isLoading ? 'bg-yellow-500' : 'bg-emerald-500 animate-pulse'}`} />
+           <span className="text-xs text-dash-muted">{metrics.documents} docs</span>
+           <div className={`w-2 h-2 rounded-full ${isLoading ? 'bg-yellow-500' : 'bg-emerald-500'}`} />
         </div>
       </div>
       
-      <div className="grid grid-cols-2 gap-2 p-3 flex-1 overflow-y-auto" style={{ minHeight: 0 }}>
+      <div className="grid grid-cols-2 gap-3 p-4 flex-1 overflow-y-auto" style={{ minHeight: 0 }}>
         {displayMetrics.map((m, i) => (
-          <div key={i} className="bg-dash-panel border border-dash-line p-3 flex flex-col justify-between hover:border-dash-accent/50 transition-colors group">
+          <div key={i} className="bg-gradient-to-br from-purple-50 to-indigo-50 border border-dash-line p-4 rounded-xl flex flex-col justify-between hover:shadow-md transition-shadow group">
             <div className="flex items-center justify-between">
-              <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-dash-muted group-hover:text-dash-accent">
+              <span className="text-xs font-semibold text-gray-600 group-hover:text-purple-600">
                 {m.label}
               </span>
-              <div className="p-1 bg-dash-surface rounded text-dash-muted group-hover:text-dash-accent">
+              <div className="p-1.5 bg-white rounded-lg text-gray-500 group-hover:text-purple-600 shadow-sm">
                 {m.icon}
               </div>
             </div>
-            <div className="mt-2">
-               <span className="text-xl font-mono font-medium tracking-tight text-dash-text">
+            <div className="mt-3">
+               <span className="text-2xl font-bold text-black">
                  {m.value}
                </span>
             </div>
           </div>
         ))}
         
-        <div className="col-span-2 bg-dash-panel border border-dash-line p-3 mt-1">
-           <h3 className="text-[9px] font-bold uppercase tracking-widest text-dash-muted mb-3 opacity-70">Retrieval Performance</h3>
+        <div className="col-span-2 bg-gradient-to-br from-blue-50 to-purple-50 border border-dash-line p-4 rounded-xl mt-1">
+           <h3 className="text-xs font-semibold text-black mb-3">Retrieval Performance</h3>
            <div className="space-y-3">
-              <div className="space-y-1">
-                 <div className="flex justify-between text-[9px] font-mono">
-                    <span className="text-dash-muted">VECTOR SEARCH</span>
-                    <span className="text-emerald-400">{(metrics.precision * 100).toFixed(1)}%</span>
+              <div className="space-y-1.5">
+                 <div className="flex justify-between text-xs">
+                    <span className="text-gray-700 font-medium">Vector Search</span>
+                    <span className="text-emerald-600 font-semibold">{(metrics.precision * 100).toFixed(1)}%</span>
                  </div>
-                 <div className="h-1 bg-dash-surface rounded-full overflow-hidden">
-                    <div className="h-full bg-emerald-500/80 transition-all duration-500" style={{ width: `${metrics.precision * 100}%` }} />
+                 <div className="h-2 bg-white rounded-full overflow-hidden shadow-inner">
+                    <div className="h-full bg-gradient-to-r from-emerald-400 to-emerald-600 transition-all duration-500 rounded-full" style={{ width: `${metrics.precision * 100}%` }} />
                  </div>
               </div>
-              <div className="space-y-1">
-                 <div className="flex justify-between text-[9px] font-mono">
-                    <span className="text-dash-muted">GRAPH GROUNDING</span>
-                    <span className="text-blue-400">{(metrics.recall * 100).toFixed(1)}%</span>
+              <div className="space-y-1.5">
+                 <div className="flex justify-between text-xs">
+                    <span className="text-gray-700 font-medium">Graph Grounding</span>
+                    <span className="text-blue-600 font-semibold">{(metrics.recall * 100).toFixed(1)}%</span>
                  </div>
-                 <div className="h-1 bg-dash-surface rounded-full overflow-hidden">
-                    <div className="h-full bg-blue-500/80 transition-all duration-500" style={{ width: `${metrics.recall * 100}%` }} />
+                 <div className="h-2 bg-white rounded-full overflow-hidden shadow-inner">
+                    <div className="h-full bg-gradient-to-r from-blue-400 to-blue-600 transition-all duration-500 rounded-full" style={{ width: `${metrics.recall * 100}%` }} />
                  </div>
               </div>
            </div>

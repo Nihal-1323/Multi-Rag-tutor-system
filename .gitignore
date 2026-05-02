@@ -4,5 +4,19 @@ dist/
 coverage/
 .DS_Store
 *.log
-.env*
-!.env.example
+.env
+.env.local
+.env.*.local
+
+# Exclude all markdown files
+*.md
+
+# Exclude Python cache
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Exclude IDE files
+.vscode/
+.idea/

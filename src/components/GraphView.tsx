@@ -67,21 +67,21 @@ export default function GraphView() {
   }, [fetchGraph]);
 
   return (
-    <div ref={containerRef} className="relative w-full h-full bg-[#0A0C10] overflow-hidden dot-grid">
-      <div className="absolute top-3 left-3 z-10 flex items-center gap-3">
-        <h2 className="text-[10px] font-bold uppercase tracking-widest text-dash-muted bg-dash-panel/80 px-2 py-1 rounded border border-dash-line">
-          Knowledge Graph Visualizer
+    <div ref={containerRef} className="relative w-full h-full bg-black overflow-hidden">
+      <div className="absolute top-4 left-4 z-10 flex items-center gap-3">
+        <h2 className="text-sm font-semibold text-white bg-black/90 backdrop-blur-sm px-4 py-2 rounded-xl border border-white/20 shadow-sm">
+          Knowledge Graph
         </h2>
-        <div className="flex gap-1">
+        <div className="flex gap-2">
           <button 
             onClick={fetchGraph}
             disabled={isRefreshing}
-            className="p-1 bg-dash-panel border border-dash-line hover:bg-dash-surface transition-colors rounded disabled:opacity-50"
+            className="p-2 bg-black/90 backdrop-blur-sm border border-white/20 hover:bg-black transition-colors rounded-lg shadow-sm disabled:opacity-50 text-white"
           >
-            <RefreshCw className={`w-2.5 h-2.5 ${isRefreshing ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`} />
           </button>
-          <button className="p-1 bg-dash-panel border border-dash-line hover:bg-dash-surface transition-colors rounded">
-            <Maximize2 className="w-2.5 h-2.5" />
+          <button className="p-2 bg-black/90 backdrop-blur-sm border border-white/20 hover:bg-black transition-colors rounded-lg shadow-sm text-white">
+            <Maximize2 className="w-4 h-4" />
           </button>
         </div>
       </div>
@@ -91,12 +91,12 @@ export default function GraphView() {
           graphData={data}
           width={dimensions.width}
           height={dimensions.height}
-          backgroundColor="rgba(0,0,0,0)"
+          backgroundColor="#000000"
           nodeAutoColorBy="group"
           nodeLabel="id"
           nodeVal={2}
-          linkColor={() => "#4A5568"}
-          linkWidth={0.5}
+          linkColor={() => "#ffffff"}
+          linkWidth={1.5}
           linkDirectionalParticles={0}
           nodeRelSize={3}
           linkDistance={400}
@@ -114,7 +114,7 @@ export default function GraphView() {
             const bckgDimensions = [textWidth + fontSize * 0.4, fontSize * 1.2];
 
             // Draw small node circle
-            ctx.fillStyle = node.color || '#6366f1';
+            ctx.fillStyle = node.color || '#ffffff';
             ctx.beginPath();
             ctx.arc(node.x, node.y, nodeSize, 0, 2 * Math.PI, false);
             ctx.fill();
@@ -146,18 +146,14 @@ export default function GraphView() {
         />
       )}
 
-      <div className="absolute bottom-3 left-3 z-10 text-[9px] text-dash-muted font-mono bg-dash-panel/50 px-2 py-1 border border-dash-line rounded uppercase">
-        Query: MATCH (n)-[r:INFLUENCES]-&gt;(m)
-      </div>
-
-      <div className="absolute bottom-3 right-3 z-10 bg-dash-panel/80 p-2 text-[8px] mono-label border border-dash-line rounded">
-        <div className="flex items-center gap-2 mb-1">
-          <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
-          <span>Core Node</span>
+      <div className="absolute bottom-4 right-4 z-10 bg-black/90 backdrop-blur-sm p-3 text-xs border border-white/20 rounded-xl shadow-sm">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="w-2 h-2 rounded-full bg-white" />
+          <span className="text-white font-medium">Core Node</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-orange-500 shadow-[0_0_4px_rgba(249,115,22,0.4)]" />
-          <span>Sub-Topic</span>
+          <div className="w-2 h-2 rounded-full bg-gray-400" />
+          <span className="text-white font-medium">Sub-Topic</span>
         </div>
       </div>
     </div>

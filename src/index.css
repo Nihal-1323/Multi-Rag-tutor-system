@@ -4,10 +4,10 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   
-  --color-dash-bg: #0F1115;
-  --color-dash-panel: #16191F;
-  --color-dash-surface: #1C1F26;
-  --color-dash-line: #2A2D35;
+  --color-dash-bg: #000000;
+  --color-dash-panel: #0a0a0a;
+  --color-dash-surface: #111111;
+  --color-dash-line: #222222;
   --color-dash-accent: #6366F1;
   --color-dash-text: #E0E2E6;
   --color-dash-muted: #9CA3AF;
