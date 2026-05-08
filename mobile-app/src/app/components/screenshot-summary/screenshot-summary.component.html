@@ -1,0 +1,48 @@
+<div class="summary-container">
+  <div class="header">
+    <h2>Screenshot Summary</h2>
+    
+    <!-- Privacy / Local Inference Badge -->
+    <div class="status-badge" [class.text-only]="(thermalProfile$ | async)?.mode === 'text-only'">
+      <span class="icon">🔒</span>
+      <span class="text">
+        {{ (thermalProfile$ | async)?.mode === 'full' ? 'Local NPU · Full' : 'Local · Text-only' }}
+      </span>
+      <span class="thermal-indicator" [class.hot]="(thermalProfile$ | async)?.headroom !== -1 && (thermalProfile$ | async)!.headroom < 0.8">
+        {{ (thermalProfile$ | async)?.headroom !== -1 && (thermalProfile$ | async)!.headroom < 0.8 ? '🔥' : '❄️' }}
+      </span>
+    </div>
+  </div>
+
+  <!-- State Visualizer -->
+  <div class="state-machine">
+    <div class="state-pill" [class.active]="(appState$ | async) !== 'IDLE'">
+      Current State: <strong>{{ appState$ | async }}</strong>
+    </div>
+  </div>
+
+  <div class="content-area">
+    <!-- Action Button -->
+    <button 
+      (click)="captureAndSummarize()" 
+      [disabled]="(appState$ | async) !== 'IDLE'"
+      class="capture-btn">
+      Capture & Summarize
+    </button>
+
+    <!-- Error Display -->
+    <div class="error-box" *ngIf="error$ | async as error">
+      ⚠️ {{ error }}
+    </div>
+
+    <!-- Output Stream Area -->
+    <div class="output-container" *ngIf="(markdown$ | async) || (appState$ | async) !== 'IDLE'">
+      <div class="skeleton-loader" *ngIf="(appState$ | async) === 'OCR' || (appState$ | async) === 'INFERRING'">
+        Processing...
+      </div>
+      
+      <!-- Render the streaming markdown -->
+      <div class="markdown-body" [innerHTML]="formattedMarkdown$ | async"></div>
+    </div>
+  </div>
+</div>

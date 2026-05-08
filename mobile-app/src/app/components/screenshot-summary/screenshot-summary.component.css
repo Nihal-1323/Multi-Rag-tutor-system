@@ -1,0 +1,132 @@
+.summary-container {
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+/* Privacy Badge */
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background-color: #e6f4ea;
+  color: #137333;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.status-badge.text-only {
+  background-color: #fef7e0;
+  color: #b06000;
+}
+
+.thermal-indicator {
+  font-size: 14px;
+}
+
+.thermal-indicator.hot {
+  animation: pulse 2s infinite;
+}
+
+/* State Visualizer */
+.state-machine {
+  margin-bottom: 20px;
+}
+
+.state-pill {
+  font-size: 13px;
+  color: #5f6368;
+  padding: 8px;
+  background: #f1f3f4;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.state-pill.active {
+  background: #e8f0fe;
+  color: #1967d2;
+  font-weight: 500;
+}
+
+/* Buttons */
+.capture-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(26, 115, 232, 0.3);
+  transition: background-color 0.2s;
+}
+
+.capture-btn:disabled {
+  background-color: #dadce0;
+  color: #9aa0a6;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.capture-btn:active:not(:disabled) {
+  background-color: #1557b0;
+}
+
+/* Error Box */
+.error-box {
+  margin-top: 16px;
+  padding: 12px;
+  background-color: #fce8e6;
+  color: #c5221f;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Output Area */
+.output-container {
+  margin-top: 24px;
+  padding: 16px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #e8eaed;
+  min-height: 100px;
+}
+
+.skeleton-loader {
+  color: #80868b;
+  font-style: italic;
+  font-size: 14px;
+  animation: pulse 1.5s infinite;
+}
+
+.markdown-body {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #202124;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
